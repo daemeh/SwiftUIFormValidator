@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 import PackageDescription
 
 let buildTests = false
@@ -6,7 +6,7 @@ let buildTests = false
 let package = Package(
         name: "SwiftUIFormValidator",
         platforms: [
-            .macOS(.v10_14), .iOS(.v13), .tvOS(.v13)
+            .macOS(.v11), .iOS(.v14), .tvOS(.v14)
         ],
         products: [
             .library(name: "FormValidator", targets: ["FormValidator"])
