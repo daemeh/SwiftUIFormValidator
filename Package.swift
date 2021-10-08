@@ -17,6 +17,6 @@ let package = Package(
                     name: "FormValidator",
                     dependencies: [],
                     path: "Sources",
-                    exclude: ["Tests", "Examples"])
+                    exclude: ["../Tests", "../Examples"])
         ]
 )
