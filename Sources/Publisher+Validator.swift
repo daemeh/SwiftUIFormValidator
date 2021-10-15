@@ -72,7 +72,10 @@ public extension Published.Publisher where Value == String {
             secondPassword: @autoclosure @escaping StringProducerClosure,
             secondPasswordPublisher: Published<String>.Publisher,
             pattern: NSRegularExpression? = nil,
-            errorMessage: @autoclosure @escaping StringProducerClosure = ""
+            errorMessage: @autoclosure @escaping StringProducerClosure = "",
+            disableValidation: @escaping DisableValidationClosure = {
+                false
+            }
     ) -> ValidationContainer {
         let pub1 = self.map {
             ValidatedPassword(password: $0, type: 0)
@@ -93,6 +96,7 @@ public extension Published.Publisher where Value == String {
                 form: form,
                 validator: validator,
                 for: merged,
+                disableValidation: disableValidation,
                 errorMessage: errorMessage().orIfEmpty(form.messages.passwordsNotMatching))
     }
 }
