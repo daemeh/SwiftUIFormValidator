@@ -24,9 +24,9 @@ public extension View {
     /// - Parameter container:
     /// - Returns:
     @ViewBuilder
-    func validation(_ container: ValidationContainer?) -> some View {
+    func validation(_ container: ValidationContainer?, _ showMessage: Bool = true) -> some View {
         if let container = container {
-            self.modifier(ValidationModifier(container: container))
+            self.modifier(ValidationModifier(container: container, showMessage))
         } else {
             self
         }
