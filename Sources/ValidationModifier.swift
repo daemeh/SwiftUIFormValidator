@@ -37,17 +37,21 @@ public extension View {
 /// A modifier for applying the validation to a view.
 public struct ValidationModifier: ViewModifier {
     @State var latestValidation: Validation = .success
+    let showMessage: Bool
 
     public let container: ValidationContainer
 
-    public init(container: ValidationContainer) {
+    public init(container: ValidationContainer, _ showMessage: Bool = true) {
+        self.showMessage = showMessage
         self.container = container
     }
 
     public func body(content: Content) -> some View {
         VStack(alignment: .leading) {
             content
-            validationMessage
+            if showMessage {
+                validationMessage
+            }
         }.onReceive(container.publisher) { validation in
             self.latestValidation = validation
         }.onReceive(container.subject) { validation in
